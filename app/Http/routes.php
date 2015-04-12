@@ -20,5 +20,16 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+Route::model('destinations', 'Destination');
+Route::model('offers', 'Offer');
+
 Route::resource('destinations', 'DestinationsController');
-Route::resource('offers', 'OffersController');
+// Route::resource('offers', 'OffersController');
+Route::resource('destinations.offers', 'OffersController');
+
+Route::bind('destinations', function($value, $route) {
+	return \App\Destination::whereSlug($value)->first();
+});
+Route::bind('offers', function($value, $route) {
+	return \App\Offer::whereSlug($value)->first();
+});

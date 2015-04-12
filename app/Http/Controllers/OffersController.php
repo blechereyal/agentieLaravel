@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\Destination;
+use App\Offer;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -12,7 +14,7 @@ class OffersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Destination $destination)
 	{
 		//
 	}
@@ -22,7 +24,7 @@ class OffersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create(Destination $destination)
 	{
 		//
 	}
@@ -32,7 +34,7 @@ class OffersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Destination $destination)
 	{
 		//
 	}
@@ -43,9 +45,9 @@ class OffersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(Destination $destination, Offer $offer)
 	{
-		//
+		return view('offers.show', compact('destination','offer'));
 	}
 
 	/**
@@ -54,7 +56,7 @@ class OffersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Destination $destination, Offer $offer)
 	{
 		//
 	}
@@ -65,7 +67,7 @@ class OffersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Destination $destination, Offer $offer)
 	{
 		//
 	}
@@ -73,10 +75,10 @@ class OffersController extends Controller {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  Destination  $estination
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Destination $destination, Offer $offer)
 	{
 		//
 	}

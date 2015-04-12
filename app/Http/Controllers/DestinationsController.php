@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\Destination;
+use App\Offer;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +16,8 @@ class DestinationsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$destinations = Destination::all();
+		return view('destinations.index', compact('destinations'));
 	}
 
 	/**
@@ -40,21 +43,22 @@ class DestinationsController extends Controller {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  Destination $destination
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(Destination $destination)
 	{
-		//
+		$offers = $destination->offers;
+		return view('destinations.show', compact('destination','offers'));
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  Destination $destination
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Destination $destination)
 	{
 		//
 	}
@@ -62,10 +66,10 @@ class DestinationsController extends Controller {
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param  Destination $destination
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Destination $destination)
 	{
 		//
 	}
@@ -73,10 +77,10 @@ class DestinationsController extends Controller {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  Destination $destination
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Destination $destination)
 	{
 		//
 	}
