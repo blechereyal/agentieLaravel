@@ -15,6 +15,14 @@ return array(
 			'title' => 'Name',
 			'select' => "name",
 		),
+		'places' => array(
+			'title' => 'places',
+			'select' => "places",
+		),
+		'expires_at' => array(
+			'title' => 'expires_at',
+			'select' => "expires_at",
+		),
 		'destination' => array(
 			'title' => 'destination',
 			'relationship' => 'destination',
@@ -71,7 +79,18 @@ return array(
 	    'type' => 'relationship',
 	    'title' => 'Destination',
 	    'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
+		),
+		'expires_at' => array(
+    'type' => 'datetime',
+    'title' => 'Expire Time',
+    'date_format' => 'yy-mm-dd', //optional, will default to this value
+    'time_format' => 'HH:mm',    //optional, will default to this value
+		),
+		'places' => array(
+    'type' => 'number',
+    'title' => 'Places',
 		)
+
     // ,
 		// 'last_name' => array(
 		// 	'title' => 'Last Name',
