@@ -14,7 +14,9 @@ class AddImageAndExpiretimeToOffersTable extends Migration {
 	{
 		Schema::table('offers', function(Blueprint $table)
 		{
-			//
+			$table->string('image')->nullable();
+			$table->dateTime('expires_at')->nullable();
+			$table->integer('places')->default(0);
 		});
 	}
 
@@ -27,7 +29,9 @@ class AddImageAndExpiretimeToOffersTable extends Migration {
 	{
 		Schema::table('offers', function(Blueprint $table)
 		{
-			//
+			$table->dropColumn('image');
+			$table->dropColumn('expires_at');
+			$table->dropColumn('places');
 		});
 	}
 
