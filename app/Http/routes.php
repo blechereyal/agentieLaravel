@@ -20,10 +20,11 @@ Route::controllers([
 
 Route::model('destinations', 'Destination');
 Route::model('offers', 'Offer');
+Route::model('offer_subscriptions', 'OfferSubscription');
 
 Route::resource('destinations', 'DestinationsController');
-// Route::resource('offers', 'OffersController');
 Route::resource('destinations.offers', 'OffersController');
+Route::resource('destinations.offers.subscriptions', 'OfferSubscriptionsController');
 
 Route::bind('destinations', function($value, $route) {
 	return \App\Destination::whereSlug($value)->first();
