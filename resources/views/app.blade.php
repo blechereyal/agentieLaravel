@@ -7,7 +7,8 @@
 	<title>Laravel</title>
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-
+	<link href="{{ asset('/css/template.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/font-awesome.css') }}" rel="stylesheet">
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
@@ -19,43 +20,115 @@
 	<![endif]-->
 </head>
 <body>
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle Navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Laravel</a>
-			</div>
+	<header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <strong>Email: </strong>info@agentie.com
+                    &nbsp;&nbsp;
+                    <strong>Support: </strong>+90-897-678-44
+                </div>
 
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="{{ url('/') }}">Home</a></li>
-				</ul>
+            </div>
+        </div>
+    </header>
+    <!-- HEADER END-->
+    <div class="navbar navbar-inverse set-radius-zero">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url('/') }}">
+									<h1 style="color:white">T-Agency20</h1>
+                </a>
+            </div>
 
-				<ul class="nav navbar-nav navbar-right">
-					@if (Auth::guest())
-						<li><a href="{{ url('/auth/login') }}">Login</a></li>
-						<li><a href="{{ url('/auth/register') }}">Register</a></li>
-					@else
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
-							</ul>
-						</li>
-					@endif
-				</ul>
-			</div>
+            <div class="left-div">
+							@if (Auth::guest())
+								<i class="fa fa-user-plus login-icon" style="font-size: 25px;" ></i>
+							@else
+									<div class="user-settings-wrapper">
+											<ul class="nav">
+
+													<li class="dropdown">
+															<a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+																	<span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
+															</a>
+															<div class="dropdown-menu dropdown-settings">
+																	<div class="media">
+																			<a class="media-left" href="#">
+																					<img src="assets/img/64-64.jpg" alt="" class="img-rounded" />
+																			</a>
+																			<div class="media-body">
+																					<h4 class="media-heading">{{ Auth::user()->name }}</h4>
+																					<h5>Welcome</h5>
+
+																			</div>
+																	</div>
+																	<hr />
+																	<h5><strong>Agentie : </strong></h5>
+																	We wish you happy browsing.
+																	<hr />
+																	<a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="{{ url('/auth/logout') }}" class="btn btn-danger btn-sm">Logout</a>
+
+															</div>
+													</li>
+
+
+											</ul>
+									</div>
+							@endif
+						</div>
+        </div>
+    </div>
+    <!-- LOGO HEADER END-->
+    <section class="menu-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="navbar-collapse collapse ">
+                        <ul id="menu-top" class="nav navbar-nav navbar-right">
+                            <!-- <li><a  href="index.html">Dashboard</a></li>
+                            <li><a href="ui.html">UI Elements</a></li>
+                            <li><a href="table.html">Data Tables</a></li>
+                            <li><a href="forms.html">Forms</a></li>
+                            <li><a href="login.html">Login Page</a></li>
+                            <li><a class="menu-top-active" href="blank.html">Blank Page</a></li> -->
+														@if (Auth::guest())
+															<li><a href="{{ url('/auth/login') }}">Login</a></li>
+															<li><a href="{{ url('/auth/register') }}">Register</a></li>
+														@else
+															<li><a href="{{ url('/destinations') }}">Destinations</a></li>
+														@endif
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- MENU SECTION END-->
+
+  <div class="content-wrapper">
+    <div class="container">
+			@yield('content')
 		</div>
-	</nav>
+	</div>
 
-	@yield('content')
 
-	<!-- Scripts -->
+	<footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    &copy; 2015 YourCompany | By : <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap</a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
