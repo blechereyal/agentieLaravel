@@ -9,4 +9,8 @@ class Offer extends Model {
 		return $this->belongsTo('App\Destination');
 	}
 
+	public function offer_subscriptions()
+	{
+		return $this->hasMany('App\OfferSubscription');
+	}
 }

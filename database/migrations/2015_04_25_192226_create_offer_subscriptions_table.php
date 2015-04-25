@@ -16,9 +16,13 @@ class CreateOfferSubscriptionsTable extends Migration {
 		{
 			$table->increments('id');
 
-			$table->integer('user_id')->unsigned()->default(0);
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->integer('offer_id')->unsigned()->default(0);
+			$table->foreign('offer_id')->references('id')->on('offers')->onDelete('cascade');
 
+			$table->integer('people');
+			$table->string('name');
+			$table->string('email');
+			$table->string('phone');
 			$table->timestamps();
 		});
 	}

@@ -7,6 +7,7 @@ use App\Offer;
 use App\OfferSubscription;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateOfferSubscriptionRequest;
 
 class OfferSubscriptionsController extends Controller {
 
@@ -20,24 +21,30 @@ class OfferSubscriptionsController extends Controller {
 		//
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @param Destination $destination
+     * @param Offer $offer
+     * @return Response
+     */
 	public function create(Destination $destination, Offer $offer)
 	{
-		return dump($destination);
+		return view('offer_subscriptions.create', compact('destination','offer'));
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Destination $destination
+     * @param Offer $offer
+     * @param CreateOfferSubscriptionRequest $request
+     * @return Response
+     */
+	public function store(Destination $destination, Offer $offer, CreateOfferSubscriptionRequest $request)
 	{
-		//
+        $offer->offer_subscriptions()->save(new OfferSubscription($request->all()));
+		return redirect()->route('destinations.offers.show',array($destination->slug, $offer->slug));
 	}
 
 	/**
