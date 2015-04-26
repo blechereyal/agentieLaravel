@@ -1,5 +1,10 @@
 <?php namespace App\Http\Controllers;
 
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Symfony\Component\HttpFoundation\Response;
+
 class HomeController extends Controller {
 
 	/*
@@ -13,24 +18,35 @@ class HomeController extends Controller {
 	|
 	*/
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function contact()
+    {
+        return view('contact');
+    }
 
-	/**
-	 * Show the application dashboard to the user.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		return view('home');
-	}
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function contactPost(Request $request)
+    {
+        $this->validate($request,array(
+            'name' => 'required|min:3',
+            'phone' => 'required|digits:10',
+            'email' => 'required|email',
+            'comment' => 'required|min:10'
+        ));
+        Mail::send('emails.contact', ['email' => $request->get('email'), 'name' => $request->get('name'), 'phone' =>
+            $request->get('phone'), 'comment' => $request->get('comment')],
+            function
+        ($message)
+        {
+            $message->to('blechereyal@gmail.com', 'Blecher Eyal')->subject('Contact Alert!');
+        });
+        return redirect('/');
+    }
+
 
 }

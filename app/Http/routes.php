@@ -13,6 +13,13 @@
 
 Route::get('/', 'DestinationsController@index');
 Route::get('/home', 'DestinationsController@index');
+
+Route::get('/contact', [
+    'as' => 'contact', 'uses' => 'HomeController@contact'
+]);
+Route::post('/contact', [
+    'as' => 'contact_post', 'uses' => 'HomeController@contactPost'
+]);
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
