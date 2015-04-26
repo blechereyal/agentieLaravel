@@ -8,4 +8,5 @@ class Destination extends Model {
 	{
 		return $this->hasMany('App\Offer');
 	}
+
 }

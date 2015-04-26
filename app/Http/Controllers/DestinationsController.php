@@ -48,7 +48,7 @@ class DestinationsController extends Controller {
 	 */
 	public function show(Destination $destination)
 	{
-		$offers = $destination->offers;
+		$offers = $destination->offers()->available()->get();
 		return view('destinations.show', compact('destination','offers'));
 	}
 

@@ -25,12 +25,16 @@
         </div>
         <div class="panel-body">
             <p>{!! $offer->description !!}</p>
-            <button class="btn btn-danger">Reserve Now!</button>
+            <div class="help-block text-danger">
+                Expires in {{\Carbon\Carbon::parse($offer->expires_at)->diffForHumans()}}
+            </div>
+
+            {!! link_to_route('destinations.offers.subscriptions.create', "Reserve Now!!", [$destination->slug, $offer->slug], array('class' => 'btn btn-danger')) !!}
             {!! link_to_route('destinations.offers.show', "See Details!", [$destination->slug, $offer->slug], array('class' => 'btn btn-default')) !!}
 
         </div>
         <div class="panel-footer">
-          Places Remaining: 12
+          Places Remaining: {{ $offer->places }}
         </div>
     </div>
   </div>

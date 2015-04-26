@@ -87,7 +87,7 @@ class OffersController extends Controller {
      * @param Destination $destination
      * @param Offer $offer
      * @return Response
-     * @internal param Destination $estination
+     * @internal param Destination $destination
      */
 	public function destroy(Destination $destination, Offer $offer)
 	{

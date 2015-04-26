@@ -64,7 +64,12 @@ return array(
 	 */
 	'permission'=> function()
 	{
-		return Auth::check();
+		if (Auth::check()){
+            if (Auth::user()->role == 'admin'){
+                return true;
+            }
+        }
+        return false;
 	},
 
 	/**
