@@ -5,6 +5,7 @@ use App\Offer;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 
 class DestinationsController extends Controller {
@@ -16,7 +17,7 @@ class DestinationsController extends Controller {
 	 */
 	public function index()
 	{
-		$destinations = Destination::all();
+		$destinations = Destination::orderBy('created_at','DESC')->paginate(5);
 		return view('destinations.index', compact('destinations'));
 	}
 
@@ -48,7 +49,7 @@ class DestinationsController extends Controller {
 	 */
 	public function show(Destination $destination)
 	{
-		$offers = $destination->offers()->available()->get();
+		$offers = $destination->offers()->available()->paginate(10);
 		return view('destinations.show', compact('destination','offers'));
 	}
 

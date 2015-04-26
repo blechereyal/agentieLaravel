@@ -137,6 +137,7 @@ return [
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider',
 		'Frozennode\Administrator\AdministratorServiceProvider',
+        'Maatwebsite\Excel\ExcelServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -196,6 +197,7 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Form'			=> 'Illuminate\Html\FormFacade',
 		'HTML'			=> 'Illuminate\Html\HtmlFacade',
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel'
 
 	],
 

@@ -5,7 +5,9 @@
   <h4 class="page-head-line">Offers for {{$destination->name}}</h4>
 </div>
 
-
+<div class="row">
+    <div class="col-md-12">{!! $offers->render() !!}</div>
+</div>
 @if ( !$offers->count() )
 <div class="row">
   <div class="col-md-12">

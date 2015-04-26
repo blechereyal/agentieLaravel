@@ -14,7 +14,7 @@ class Offer extends Model {
      */
     public function scopeAvailable($query)
     {
-        return $query->where('expires_at', '>', Carbon::now())->where('places', '>', 0);
+        return $query->where('expires_at', '>', Carbon::now())->where('places', '>', 0)->orderBy('created_at','DESC');
     }
 
 	public function destination()

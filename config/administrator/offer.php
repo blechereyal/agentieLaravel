@@ -2,6 +2,8 @@
 /**
  * Destination model config
  */
+
+
 return array(
 	'title' => 'Offer',
 	'single' => 'Offer',
@@ -106,4 +108,35 @@ return array(
 		// 	'name_field' => 'name',
 		// ),
 	),
+    'actions' => array(
+        'download_excel' => [
+            'title' => 'Download CSV',
+            'messages' => [
+                'active' => 'Creating the csv...',
+                'success' => 'CSV created! Downloading now...',
+                'error' => 'There was an error while creating the csv',
+            ],
+            //the Eloquent query builder is passed to the closure
+            'action' => function($query)
+            {
+                //get all the rows for this query
+                $data = $query->offer_subscriptions()->get();
+
+                //do something to put it into excel
+                $file = Excel::create($query->get()->first()->slug, function ($excel) use ($data) {
+
+                    // Set sheets
+                    $excel->sheet('first sheet', function ($sheet) use ($data) {
+
+                        // Sheet manipulation
+                        $sheet->fromArray($data);
+                    });
+                })->store('csv', storage_path('excel/exports'), true);
+                \Illuminate\Support\Facades\Log::info('asdf');
+
+                return response()->download($file['full'],'filename.csv');
+            }
+        ],
+
+    ),
 );

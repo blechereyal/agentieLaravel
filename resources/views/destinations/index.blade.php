@@ -44,6 +44,7 @@
               @endforeach
             </tbody>
           </table>
+            {!! $destinations->render() !!}
         </div>
       </div>
     </div>
