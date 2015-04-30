@@ -30,6 +30,16 @@ return array(
 			'relationship' => 'destination',
 			'select' => '(:table).name',
 		),
+        'places_occupied' => array(
+            'title' => 'Occupied Places',
+            'relationship' => 'offer_subscriptions',
+            'select' => 'count((:table).people)'
+        ),
+        'image' => array(
+            'title' => 'Image',
+            'output' => '<img src="/uploads/offers/detail/(:value)" height="100" />',
+        )
+
 		// 'formatted_birth_date' => array(
 		// 	'title' => 'Birth Date',
 		// 	'sort_field' => 'birth_date',
@@ -47,7 +57,11 @@ return array(
 		),
 		'name' => array(
 			'title' => 'Name'
-		)
+		),
+        'expires_at' => array(
+            'type'  => 'datetime',
+            'title' => 'Expire Date'
+        )
     // ,
 		// 'first_name' => array(
 		// 	'title' => 'First Name',
@@ -74,24 +88,35 @@ return array(
 			'type' => 'text',
 		),
 		'description' => array(
-	    'type' => 'wysiwyg',
-	    'title' => 'Description',
+	        'type' => 'wysiwyg',
+	        'title' => 'Description',
 		),
 		'destination' => array(
-	    'type' => 'relationship',
-	    'title' => 'Destination',
-	    'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
+	        'type' => 'relationship',
+	        'title' => 'Destination',
+	        'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
 		),
 		'expires_at' => array(
-    'type' => 'datetime',
-    'title' => 'Expire Time',
-    'date_format' => 'yy-mm-dd', //optional, will default to this value
-    'time_format' => 'HH:mm',    //optional, will default to this value
+            'type' => 'datetime',
+            'title' => 'Expire Time',
+            'date_format' => 'yy-mm-dd', //optional, will default to this value
+            'time_format' => 'HH:mm',    //optional, will default to this value
 		),
 		'places' => array(
-    'type' => 'number',
-    'title' => 'Places',
-		)
+            'type' => 'number',
+            'title' => 'Places',
+		),
+        'image' => array(
+            'title' => 'Image (1200 x 1314)',
+            'type' => 'image',
+            'naming' => 'random',
+            'location' =>  public_path() . '/uploads/offers/originals/',
+            'size_limit' => 2,
+            'sizes' => array(
+                array(1200, 1314, 'crop', public_path() . '/uploads/offers/resize/', 100),
+                array(452, 495, 'landscape', public_path() . '/uploads/offers/detail/', 100),
+            )
+        )
 
     // ,
 		// 'last_name' => array(
@@ -132,9 +157,7 @@ return array(
                         $sheet->fromArray($data);
                     });
                 })->store('csv', storage_path('excel/exports'), true);
-                \Illuminate\Support\Facades\Log::info('asdf');
-
-                return response()->download($file['full'],'filename.csv');
+                return response()->download($file["full"],$file["file"]);
             }
         ],
 

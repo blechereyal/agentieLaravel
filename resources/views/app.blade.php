@@ -26,7 +26,7 @@
                 <div class="col-md-12">
                     <strong>Email: </strong>info@agentie.com
                     &nbsp;&nbsp;
-                    <strong>Support: </strong>+90-897-678-44
+                    <strong>Support: </strong>+40-700-000-000
                 </div>
 
             </div>
@@ -42,7 +42,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ url('/') }}">
-									<h1 style="color:white">T-Agency20</h1>
+									<h1 style="color:white">Agency</h1>
                 </a>
             </div>
 
@@ -60,7 +60,8 @@
 															<div class="dropdown-menu dropdown-settings">
 																	<div class="media">
 																			<a class="media-left" href="#">
-																					<img src="assets/img/64-64.jpg" alt="" class="img-rounded" />
+																					<img src="{{Auth::user()->gravatarUrl()}}" alt=""
+                                                                                         class="img-rounded" />
 																			</a>
 																			<div class="media-body">
 																					<h4 class="media-heading">{{ Auth::user()->name }}</h4>
@@ -100,9 +101,14 @@
 														@if (Auth::guest())
 															<li><a href="{{ url('/auth/login') }}">Login</a></li>
 															<li><a href="{{ url('/auth/register') }}">Register</a></li>
+                                                            
 														@else
-															<li><a href="{{ url('/destinations') }}">Destinations</a></li>
+															@if(Auth::user()->role == 'admin')
+                                                                <li><a href="{{url('/admin')}}">Admin Panel</a></li>
+                                                            @endif
 														@endif
+                                                        <li><a href="{{ url('/destinations') }}">Destinations</a></li>
+                                                        <li>{!! link_to_route('contact', "Contact Us!!") !!}</li>
                         </ul>
                     </div>
                 </div>
@@ -123,7 +129,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    &copy; 2015 YourCompany | By : <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap</a>
+                    &copy; 2015 Agency
                 </div>
 
             </div>

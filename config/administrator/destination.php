@@ -18,7 +18,7 @@ return array(
 		'image' => array(
         'title' => 'Image',
         'output' => '<img src="/uploads/destinations/detail/(:value)" height="100" />',
-    ),
+         ),
 		'destination' => array(
 			'title' => 'offers',
 			'relationship' => 'offers',
@@ -69,16 +69,16 @@ return array(
 			'type' => 'text',
 		),
 		'image' => array(
-      'title' => 'Image (1200 x 1314)',
-      'type' => 'image',
-      'naming' => 'random',
-      'location' =>  public_path() . '/uploads/destinations/originals/',
-      'size_limit' => 2,
-      'sizes' => array(
-          array(1200, 1314, 'crop', public_path() . '/uploads/destinations/resize/', 100),
-          array(452, 495, 'landscape', public_path() . '/uploads/destinations/detail/', 100),
-      )
-    ),
+          'title' => 'Image (1200 x 1314)',
+          'type' => 'image',
+          'naming' => 'random',
+          'location' =>  public_path() . '/uploads/destinations/originals/',
+          'size_limit' => 2,
+          'sizes' => array(
+              array(1200, 1314, 'crop', public_path() . '/uploads/destinations/resize/', 100),
+              array(452, 495, 'landscape', public_path() . '/uploads/destinations/detail/', 100),
+          )
+        ),
 		'description' => array(
 	    'type' => 'wysiwyg',
 	    'title' => 'Description',

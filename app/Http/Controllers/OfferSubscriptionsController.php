@@ -11,6 +11,15 @@ use App\Http\Requests\CreateOfferSubscriptionRequest;
 
 class OfferSubscriptionsController extends Controller {
 
+
+    /**
+     * Instantiate a new UserController instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
 	/**
 	 * Display a listing of the resource.
 	 *

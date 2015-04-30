@@ -53,7 +53,7 @@ return array(
 	 */
 	'menu' => array(
 		'Settings' => array('settings.site'),
-		'models' => array('destination', 'offer')
+		'models' => array('destination', 'offer', 'user')
 	),
 
 	/**

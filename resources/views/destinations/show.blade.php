@@ -26,12 +26,14 @@
             {{$offer->name}}
         </div>
         <div class="panel-body">
-            <p>{!! $offer->description !!}</p>
-            <div class="help-block text-danger">
-                Expires in {{\Carbon\Carbon::parse($offer->expires_at)->diffForHumans()}}
+            <p class="lead">only : <strong class="text-info"><i class="fa fa-euro"></i> {{$offer->price}}</strong></p>
+            <p>{!! str_limit($offer->description, $limit = 100, $end = '...') !!}</p>
+            <div class="help-block">
+                <span class="text-danger">Expires in {{\Carbon\Carbon::parse($offer->expires_at)->diffForHumans()}}</span>
             </div>
-
-            {!! link_to_route('destinations.offers.subscriptions.create', "Reserve Now!!", [$destination->slug, $offer->slug], array('class' => 'btn btn-danger')) !!}
+            @if (Auth::user())
+                {!! link_to_route('destinations.offers.subscriptions.create', "Reserve Now!!", [$destination->slug, $offer->slug], array('class' => 'btn btn-danger')) !!}
+            @endif
             {!! link_to_route('destinations.offers.show', "See Details!", [$destination->slug, $offer->slug], array('class' => 'btn btn-default')) !!}
 
         </div>

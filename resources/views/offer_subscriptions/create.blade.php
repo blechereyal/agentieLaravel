@@ -15,15 +15,15 @@
   {!! Form::open(array('route' => array('destinations.offers.subscriptions.store', $destination->slug, $offer->slug)))  !!}
     <div class="form-group">
       {!! Form::label('name','Full name') !!}
-      {!! Form::text('name',null,array('class' => 'form-control')) !!}
+      {!! Form::text('name',Auth::user()->name,array('class' => 'form-control')) !!}
     </div>
     <div class="form-group">
       {!! Form::label('email','E-mail Address') !!}
-      {!! Form::email('email',null,array('class' => 'form-control')) !!}
+      {!! Form::email('email',Auth::user()->email,array('class' => 'form-control')) !!}
     </div>
     <div class="form-group">
       {!! Form::label('people','People') !!}
-      {!! Form::selectRange('people', 0, $offer->places ,null,array('class' => 'form-control')) !!}
+      {!! Form::selectRange('people', 1, $offer->places ,null,array('class' => 'form-control')) !!}
       <span class="help-block">We need to know how many places you want</span>
     </div>
     <div class="form-group">

@@ -15,9 +15,16 @@ class DestinationsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-		$destinations = Destination::orderBy('created_at','DESC')->paginate(5);
+        $query = $request->input('q');
+        if ($query){
+            $destinations = Destination::where('name', 'like' , '%'. $query .'%')->orderBy('created_at','DESC')->paginate
+            (5);
+        } else {
+            $destinations = Destination::orderBy('created_at','DESC')->paginate(5);
+        }
+
 		return view('destinations.index', compact('destinations'));
 	}
 

@@ -14,9 +14,9 @@ class DestinationsTableSeeder extends Seeder {
         for ($i = 0; $i < 10; $i++) {
             \App\Destination::create([
                 'name' => $faker->country,
-                'description' => $faker->realText(),
+                'description' =>  implode("<br>", $faker->paragraphs($nb = 10)),
                 'slug' => 'destination' . $i,
-                'image' => 'Ocw9rRURVv1rWVsiIFZjDr8gOAtjtWjW.jpg'
+                'image' => 'jotSFnfK3S0Obrvx4c8bVq6yWKiWAqVo.png'
             ]);
         }
     }
